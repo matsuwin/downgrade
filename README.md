@@ -1,2 +1,2 @@
 # downgrade
-📦 #mod# Go语言简单的熔断降级库
+📦 #mod# Go 的熔断降级和重试功能库
