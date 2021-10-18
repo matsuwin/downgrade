@@ -3,12 +3,6 @@ Go 的熔断降级和重试功能库
 
 <br>
 
-## Installing
-
-```
-go get github.com/matsuwin/downgrade
-```
-
 ## Quick Start
 
 ```go
@@ -39,4 +33,10 @@ run plan1
 run plan1
 plan1 error
 run plan2
+```
+
+## Installing
+
+```
+go get github.com/matsuwin/downgrade
 ```
