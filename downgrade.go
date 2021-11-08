@@ -2,12 +2,13 @@ package downgrade
 
 import (
 	"crypto/tls"
-	"github.com/matsuwin/siggroup/x/errcause"
 	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/matsuwin/siggroup/x/errcause"
 )
 
 // Request (HTTP Client)
@@ -56,12 +57,9 @@ func (work *_Work) Do() error {
 
 	// Plan1
 	go func() {
-		defer func() {
-			sig <- struct{}{}
-			if ei := recover(); ei != nil {
-				errcause.Keep(ei.(error))
-			}
-		}()
+		defer errcause.Recover()
+		defer func() { sig <- struct{}{} }()
+
 		if work.retry == 0 {
 			work.retry = 1
 		}
