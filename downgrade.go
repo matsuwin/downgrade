@@ -2,13 +2,12 @@ package downgrade
 
 import (
 	"crypto/tls"
+	"github.com/matsuwin/siggroup/x/errcause"
 	"github.com/pkg/errors"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"time"
-
-	"github.com/matsuwin/siggroup/x/errcause"
 )
 
 // Request (HTTP Client)
