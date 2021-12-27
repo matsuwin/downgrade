@@ -5,7 +5,6 @@ import (
 	"github.com/matsuwin/siggroup/x/errcause"
 	"github.com/pkg/errors"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -37,7 +36,7 @@ func Request(header http.Header, method, url string, body io.Reader) (http.Heade
 
 	// 读取数据
 	var data []byte
-	data, err = ioutil.ReadAll(res.Body)
+	data, err = io.ReadAll(res.Body)
 	if err != nil {
 		return nil, nil, errors.New(err.Error())
 	}
