@@ -53,7 +53,7 @@ func (work *_Work) Do() error {
 	var sig = make(chan struct{})
 	var err error
 
-	// Plan1
+	// PlanA
 	go func() {
 		defer errcause.Recover()
 		defer func() { sig <- struct{}{} }()
@@ -62,7 +62,7 @@ func (work *_Work) Do() error {
 			work.retry = 1
 		}
 		for i := 0; i < work.retry; i++ {
-			if err = work.Plan1(); err == nil {
+			if err = work.PlanA(); err == nil {
 				return
 			}
 		}
@@ -75,16 +75,16 @@ func (work *_Work) Do() error {
 	case <-sig:
 	}
 
-	// Plan2
-	if work.Plan2 != nil && err != nil {
-		err = work.Plan2(err)
+	// PlanB
+	if work.PlanB != nil && err != nil {
+		err = work.PlanB(err)
 	}
 	return err
 }
 
 type _Work struct {
-	Plan1   func() error
-	Plan2   func(err error) error
+	PlanA   func() error
+	PlanB   func(err error) error
 	timeout time.Duration
 	retry   int
 }
