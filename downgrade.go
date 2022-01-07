@@ -2,8 +2,8 @@ package downgrade
 
 import (
 	"crypto/tls"
-	"github.com/matsuwin/siggroup/x/errcause"
 	"github.com/pkg/errors"
+	"github.com/utilgo/errcause"
 	"io"
 	"net/http"
 	"time"

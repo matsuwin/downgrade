@@ -14,14 +14,14 @@ func TestNew(t *testing.T) {
 
 	// 定义主要任务内容
 	work.PlanA = func() error {
-		fmt.Println("run plan1")
+		fmt.Println("run planA")
 		return errors.New("plan1 error")
 	}
 
 	// 定义备选任务内容
 	work.PlanB = func(err error) error {
 		fmt.Println(err)
-		fmt.Println("run plan2")
+		fmt.Println("run planB")
 		return nil
 	}
 
